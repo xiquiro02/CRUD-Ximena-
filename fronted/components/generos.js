@@ -16,5 +16,6 @@ export const armarGenero = (elemento, datos) => {
     div.append(label, input);
     fragmento.append(div);
   });
+  
   elemento.append(fragmento)
 }

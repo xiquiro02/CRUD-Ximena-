@@ -73,7 +73,7 @@ form select {
 }
 
 .card {
-  background-color: #f3f3f3;
+  background-color: #d8f9f7;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -84,4 +84,34 @@ form select {
   border: solid 1px #e7e6e6;
   border-radius: 12px;
   padding: 18px;
+}
+
+.btnEliminar{
+    background: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  font-family: inherit;
+  display: inline-block;
+}
+
+.btnEditar{
+    background: #4c95ef;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  font-family: inherit;
+  display: inline-block;
 }

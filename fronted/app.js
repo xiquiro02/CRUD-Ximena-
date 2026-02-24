@@ -1,9 +1,10 @@
 // Importaciones
 import { armarCiudades, armarGenero } from "./components/index.js";
+import { armarUsuario } from "./components/usuarios.js";
 import { validar } from "./helpers/validarFormulario.js";
 import { ciudades, generos } from "./use-case/index.js";
 import { createUser } from "./use-case/usuarios/createUser.js";
-import { armarUsuario } from "./components/usuarios.js";
+import { getUsuarios } from "./use-case/usuarios/getUsuarios.js";
 
 // variables
 const formulario = document.querySelector('form');
@@ -71,20 +72,23 @@ const validarFormulario = (e) => {
     }
   }
 }
-
-
+ 
 // Eventos
 document.addEventListener("DOMContentLoaded", async () => {
-  let datosCiudades = await ciudades();
-  let datosGeneros = await generos();
-  armarGenero(divGeneros, datosGeneros);
-  armarCiudades(ciudad, datosCiudades);
-})
+    let datosCiudades = await ciudades();
+    let datosGeneros = await generos();
+    let datosUsuario = await getUsuarios();
+    armarGenero(divGeneros, datosGeneros);
+    armarCiudades(ciudad, datosCiudades);
+    armarUsuario(divUsuario, datosUsuario);
+});
 
-formulario.addEventListener("submit", (e) => {
-  e.preventDefault()
+formulario.addEventListener("submit", async (e) => {
+  e.preventDefault();
   const { esValido, documento, nombre, genero, ciudad, correo } = validarFormulario(e.target);
   if (!esValido) return;
-  createUser(documento, nombre, genero, ciudad, correo);
-  armarUsuario(documento, nombre, genero, ciudad, correo);
+
+  const usuarioCreado = await createUser(documento, nombre, genero, ciudad, correo);
+  armarUsuario(divUsuario, usuarioCreado);
+  formulario.reset();
 });

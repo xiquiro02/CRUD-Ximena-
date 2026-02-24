@@ -15,5 +15,3 @@ export const createUser = async (documento, nombre, genero, ciudad, correo) => {
   const respuesta = await  solicitar.json();
   return respuesta;
 }
-
-// no bat-tips
